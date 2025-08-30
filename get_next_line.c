@@ -6,13 +6,12 @@
 /*   By: moabed <moabed@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 12:01:00 by moabed            #+#    #+#             */
-/*   Updated: 2025/08/29 12:05:31 by moabed           ###   ########.fr       */
+/*   Updated: 2025/08/29 23:53:02 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-
 }
