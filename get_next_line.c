@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 12:01:00 by moabed            #+#    #+#             */
-/*   Updated: 2025/09/09 04:51:55 by moabed           ###   ########.fr       */
+/*   Updated: 2025/09/10 00:20:37 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,25 @@
 
 char	*extract_line(char *leftovers)
 {
-	int		i;
-	int		j;
-	char	*p;
+	int	len;
 
-	j = 0;
-	i = 0;
-	while (leftovers[i] != '\n' && leftovers[i])
-		i++;
-	if (leftovers[i] == '\n')
-    {
-        p = malloc(sizeof(char) * (i + 2));
-    }
-    else
-        p = malloc(sizeof(char) * (i + 1));
-	if (!p)
+	len = 0;
+	if ( !leftovers[len])
 		return (NULL);
-	while (j < i)
+		
+	while (leftovers[len] && leftovers[len] != '\n')
 	{
-		p[j] = leftovers[j];
-		j++;
+		len++;
 	}
-	p[j++] = '\n';
-	p[j] = '\0';
-	return (p);
+	if(leftovers[len] =='\n')
+		len++;
+	return (ft_strdup(leftovers,len));
 }
 
 static char	*readappend(int fd, char *leftovers)
 {
 	char	buffer[BUFFER_SIZE + 1];
+	char	*temp_ptr;
 	int		bytes;
 
 	while (!ft_strchr(leftovers, '\n'))
@@ -51,7 +41,9 @@ static char	*readappend(int fd, char *leftovers)
 		if (bytes <= 0)
 			break ;
 		buffer[bytes] = '\0';
-		leftovers = ft_strjoin(leftovers, buffer);
+		temp_ptr = leftovers;
+   		leftovers = ft_strjoin(temp_ptr, buffer); 
+  		free(temp_ptr);
 	}
 	return (leftovers);
 }
@@ -88,7 +80,7 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	leftovers = readappend(fd, leftovers);
-	if (!leftovers)
+	if (!leftovers || !*leftovers)
 		return (NULL);
 	line = extract_line(leftovers);
 	leftovers = prepare_next_leftovers(leftovers);

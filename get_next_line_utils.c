@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 12:00:57 by moabed            #+#    #+#             */
-/*   Updated: 2025/09/09 04:41:20 by moabed           ###   ########.fr       */
+/*   Updated: 2025/09/10 00:16:43 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlen(const char *str)
 	int	i;
 
 	i = 0;
+	if (!str)
+		return (0);
 	while (str[i] != '\0')
 	{
 		i++;
@@ -29,6 +31,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	char	*totalsize;
 	char	*ptr;
 
+	if (!s1)
+		s1 = "";
 	totalsize = malloc((ft_strlen(s2) + ft_strlen(s1) + 1) * sizeof(char));
 	ptr = totalsize;
 	if (totalsize == NULL)
@@ -50,6 +54,8 @@ char	*ft_strchr(const char *s, int c)
 	char	x;
 
 	x = (char)c;
+	if(!s)
+		return (NULL);
 	while (*s)
 	{
 		if (*s == x)
