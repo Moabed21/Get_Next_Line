@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 12:01:00 by moabed            #+#    #+#             */
-/*   Updated: 2025/09/10 00:28:47 by moabed           ###   ########.fr       */
+/*   Updated: 2025/09/10 00:31:05 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,3 @@ char	*get_next_line(int fd)
 	leftovers = prepare_next_leftovers(leftovers);
 	return (line);
 }
-
