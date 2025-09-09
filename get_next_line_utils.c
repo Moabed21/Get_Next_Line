@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 12:00:57 by moabed            #+#    #+#             */
-/*   Updated: 2025/09/09 03:43:01 by moabed           ###   ########.fr       */
+/*   Updated: 2025/09/09 04:41:20 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlen(const char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '\0')
@@ -23,6 +23,7 @@ size_t	ft_strlen(const char *str)
 	}
 	return (i);
 }
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*totalsize;
@@ -43,6 +44,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	*totalsize = '\0';
 	return (ptr);
 }
+
 char	*ft_strchr(const char *s, int c)
 {
 	char	x;
@@ -58,6 +60,7 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *)s);
 	return (NULL);
 }
+
 char	*ft_strdup(char *src, int bytes)
 {
 	char	*dest;
