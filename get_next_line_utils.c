@@ -54,7 +54,7 @@ char	*ft_strchr(const char *s, int c)
 	char	x;
 
 	x = (char)c;
-	if(!s)
+	if (!s)
 		return (NULL);
 	while (*s)
 	{

@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 12:01:03 by moabed            #+#    #+#             */
-/*   Updated: 2025/09/09 04:22:39 by moabed           ###   ########.fr       */
+/*   Updated: 2025/09/10 00:29:44 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t		ft_strlen(const char *str);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strchr(const char *s, int c);
 
-static char	*readappend(int fd, char leftovers);
+static char	*readappend(int fd, char *leftovers);
 static char	*prepare_next_leftovers(char *leftovers);
 char		*extract_line(char *leftovers);
 

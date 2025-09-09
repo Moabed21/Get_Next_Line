@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 12:01:00 by moabed            #+#    #+#             */
-/*   Updated: 2025/09/10 00:20:37 by moabed           ###   ########.fr       */
+/*   Updated: 2025/09/10 00:28:47 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,15 @@ char	*extract_line(char *leftovers)
 	int	len;
 
 	len = 0;
-	if ( !leftovers[len])
+	if (!leftovers[len])
 		return (NULL);
-		
 	while (leftovers[len] && leftovers[len] != '\n')
 	{
 		len++;
 	}
-	if(leftovers[len] =='\n')
+	if (leftovers[len] == '\n')
 		len++;
-	return (ft_strdup(leftovers,len));
+	return (ft_strdup(leftovers, len));
 }
 
 static char	*readappend(int fd, char *leftovers)
@@ -42,8 +41,8 @@ static char	*readappend(int fd, char *leftovers)
 			break ;
 		buffer[bytes] = '\0';
 		temp_ptr = leftovers;
-   		leftovers = ft_strjoin(temp_ptr, buffer); 
-  		free(temp_ptr);
+		leftovers = ft_strjoin(temp_ptr, buffer);
+		free(temp_ptr);
 	}
 	return (leftovers);
 }
@@ -51,7 +50,7 @@ static char	*readappend(int fd, char *leftovers)
 static char	*prepare_next_leftovers(char *leftovers)
 {
 	int		i;
-	int	j;
+	int		j;
 	char	*nlo;
 
 	j = 0;
@@ -67,11 +66,11 @@ static char	*prepare_next_leftovers(char *leftovers)
 	nlo = malloc(sizeof(char) * (ft_strlen(leftovers) - i + 1));
 	if (!nlo)
 		return (NULL);
-	    while (leftovers[i])
+	while (leftovers[i])
 		nlo[j++] = leftovers[i++];
-    	nlo[j] = '\0';
-    	free(leftovers);
-    	return (nlo);
+	nlo[j] = '\0';
+	free(leftovers);
+	return (nlo);
 }
 
 char	*get_next_line(int fd)
@@ -87,33 +86,3 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-// int	main(int argc, char **argv)
-// {
-// 	int	fd;
-
-// 	char	p[101];
-// 	int	bytes;
-// 	int	i;
-// 	static char *leftover;
-// 	i = 0;
-// fd = open(argv[1], O_RDONLY);
-// 	bytes = read(fd ,p,100);
-// 	while (i < bytes )
-// 	{
-// 		write (1, &p[i], 1);
-// 		i++;
-// 		if (p[i] == '\n')
-// 		{
-// 			write (1, &p[i], 1);
-// 			i++;
-// 			leftover =ft_strdup(&p[i],bytes - i);
-// 			break ;
-// 		}
-// 	}
-// 	while (*leftover)
-// 	{
-// 		write(1,leftover,1);
-// 		leftover++;
-// 	}
-// printf("%s", get_next_line(fd));
-//}
