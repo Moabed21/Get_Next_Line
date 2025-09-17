@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 12:01:00 by moabed            #+#    #+#             */
-/*   Updated: 2025/09/10 00:31:05 by moabed           ###   ########.fr       */
+/*   Updated: 2025/09/17 22:38:42 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,18 @@ char	*extract_line(char *leftovers)
 		len++;
 	return (ft_strdup(leftovers, len));
 }
+// extractline duplicates the leftovers 
+//from stack to heap according to the desired length
 
 static char	*readappend(int fd, char *leftovers)
 {
-	char	buffer[BUFFER_SIZE + 1];
+	char	*buffer;
 	char	*temp_ptr;
 	int		bytes;
 
+	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buffer)
+		return (NULL);
 	while (!ft_strchr(leftovers, '\n'))
 	{
 		bytes = read(fd, buffer, BUFFER_SIZE);
@@ -44,6 +49,7 @@ static char	*readappend(int fd, char *leftovers)
 		leftovers = ft_strjoin(temp_ptr, buffer);
 		free(temp_ptr);
 	}
+	free(buffer);
 	return (leftovers);
 }
 
@@ -80,8 +86,24 @@ char	*get_next_line(int fd)
 
 	leftovers = readappend(fd, leftovers);
 	if (!leftovers || !*leftovers)
+	{
+		free(leftovers);
+		leftovers = NULL;
 		return (NULL);
+	}
 	line = extract_line(leftovers);
 	leftovers = prepare_next_leftovers(leftovers);
 	return (line);
 }
+// gnl firstly read the fd to the leftovers
+
+// #include <stdio.h>
+// int	main(int argc , char **av)
+// {
+// 	(void )argc;
+// 	int fd = open(av[1], O_RDONLY);
+// 	char *p = get_next_line(fd);
+// 	printf("%s", p);
+// 	// printf("%s \n", get_next_line(fd));
+
+//  }

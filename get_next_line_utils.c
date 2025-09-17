@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 12:00:57 by moabed            #+#    #+#             */
-/*   Updated: 2025/09/10 00:16:43 by moabed           ###   ########.fr       */
+/*   Updated: 2025/09/11 03:52:34 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (!s1)
 		s1 = "";
+	if (!s2)
+		s2 = "";
 	totalsize = malloc((ft_strlen(s2) + ft_strlen(s1) + 1) * sizeof(char));
 	ptr = totalsize;
 	if (totalsize == NULL)
