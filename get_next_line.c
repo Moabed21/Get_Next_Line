@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 12:01:00 by moabed            #+#    #+#             */
-/*   Updated: 2025/09/17 22:38:42 by moabed           ###   ########.fr       */
+/*   Updated: 2025/09/30 20:38:22 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*extract_line(char *leftovers)
 	int	len;
 
 	len = 0;
-	if (!leftovers[len])
+	if (!leftovers || !leftovers[len])
 		return (NULL);
 	while (leftovers[len] && leftovers[len] != '\n')
 	{
@@ -36,14 +36,19 @@ static char	*readappend(int fd, char *leftovers)
 	char	*temp_ptr;
 	int		bytes;
 
+	bytes = 1;
 	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (NULL);
-	while (!ft_strchr(leftovers, '\n'))
+	while (!ft_strchr(leftovers, '\n') && bytes != 0)
 	{
 		bytes = read(fd, buffer, BUFFER_SIZE);
-		if (bytes <= 0)
-			break ;
+		if (bytes == -1)
+		{
+			free(buffer);
+			free(leftovers);
+			return (NULL);
+		}
 		buffer[bytes] = '\0';
 		temp_ptr = leftovers;
 		leftovers = ft_strjoin(temp_ptr, buffer);
@@ -63,15 +68,17 @@ static char	*prepare_next_leftovers(char *leftovers)
 	i = 0;
 	while (leftovers[i] != '\n' && leftovers[i])
 		i++;
-	if (!leftovers[i])
+	if (!leftovers[i++])
 	{
 		free(leftovers);
 		return (NULL);
 	}
-	i++;
 	nlo = malloc(sizeof(char) * (ft_strlen(leftovers) - i + 1));
 	if (!nlo)
+	{
+		free(leftovers);
 		return (NULL);
+	}
 	while (leftovers[i])
 		nlo[j++] = leftovers[i++];
 	nlo[j] = '\0';

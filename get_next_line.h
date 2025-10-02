@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 12:01:03 by moabed            #+#    #+#             */
-/*   Updated: 2025/09/11 03:16:44 by moabed           ###   ########.fr       */
+/*   Updated: 2025/09/26 21:45:47 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #  define BUFFER_SIZE 1024
 # endif
 # include <fcntl.h>
-# include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
 
